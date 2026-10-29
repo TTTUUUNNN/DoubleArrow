@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>双矢棋</title>
+<title>Double Arrow</title>
 <style>
 :root{
   --bg:#0a1412; --panel:#121f1b; --line:rgba(120,220,190,.18);
@@ -113,7 +113,7 @@ button.ctl.armed{border-color:#e05548;color:#ff8a7a}
 <body>
 
 <div id="topbar">
-  <span class="logo">双矢棋</span>
+  <span class="logo" id="logo">Double Arrow</span>
   <span id="turnInfo"></span>
   <span id="selInfo"></span>
   <span id="moveInfo"></span>
@@ -121,7 +121,7 @@ button.ctl.armed{border-color:#e05548;color:#ff8a7a}
 </div>
 
 <div class="boardwrap">
-  <svg id="board" viewBox="0 0 640 640" aria-label="双矢棋棋盘">
+  <svg id="board" viewBox="0 0 640 640" aria-label="Double Arrow board">
     <defs>
       <radialGradient id="boardbg" cx="50%" cy="40%" r="78%">
         <stop offset="0%" stop-color="#142620"/>
@@ -159,8 +159,8 @@ button.ctl.armed{border-color:#e05548;color:#ff8a7a}
       <p id="ovTitle"></p>
       <p id="ovWinner"></p>
       <div class="row">
-        <button class="ctl" id="ovAgain">再来一局</button>
-        <button class="ctl" id="ovUndo">悔棋继续</button>
+        <button class="ctl" id="ovAgain">Play again</button>
+        <button class="ctl" id="ovUndo">Undo</button>
       </div>
     </div>
   </div>
@@ -171,14 +171,15 @@ button.ctl.armed{border-color:#e05548;color:#ff8a7a}
 </div>
 
 <div id="aimode">
-  <button class="ctl" id="modeBtn">双人对局</button>
-  <button class="ctl" id="sideBtn" style="display:none">AI 执后手</button>
-  <button class="ctl" id="lvlBtn" style="display:none">学徒</button>
+  <button class="ctl" id="modeBtn">Two players</button>
+  <button class="ctl" id="sideBtn" style="display:none">AI plays second</button>
+  <button class="ctl" id="lvlBtn" style="display:none">Novice</button>
 </div>
 
 <div id="controls">
-  <button class="ctl" id="undoBtn">悔棋</button>
-  <button class="ctl" id="resetBtn">重开</button>
+  <button class="ctl" id="undoBtn">Undo</button>
+  <button class="ctl" id="resetBtn">Restart</button>
+  <button class="ctl" id="langBtn">中文</button>
 </div>
 
 <script>
@@ -196,6 +197,42 @@ const OPTIONS = [                               // 每格 6 种落法：两种�
   {key:'Cdr', label:'角·下右', dirs:[1,2]},
   {key:'Cdl', label:'角·下左', dirs:[2,3]}
 ];
+/* ================= 语言（默认英文，可切中文） ================= */
+const I18N = {
+  en: {
+    appName:'Double Arrow', boardLabel:'Double Arrow board',
+    turnBefore:'Waiting for <b style="color:var(--p1)">first</b>',
+    turnAfter:'Waiting for <b style="color:var(--p2)">second</b>',
+    moves:n=>`Move ${n}`, total:n=>`${n} moves`, gameOver:'Game over',
+    deadRegions:n=>`Dead regions ${n}`, selected:s=>`Selected ${s}`,
+    thinking:'Thinking…', ovTitle:n=>`No legal move after ${n} moves`,
+    aiWin:'AI wins', youWin:'You win',
+    firstWins:'First player wins', secondWins:'Second player wins',
+    again:'Play again', undo:'Undo', reset:'Restart', resetConfirm:'Confirm restart?',
+    twoPlayers:'Two players', vsAi:'vs AI',
+    aiFirst:'AI plays first', aiSecond:'AI plays second',
+    levels:['Novice','Player','Master'],
+    orient:{Sh:'H', Sv:'V', Cul:'UL', Cur:'UR', Cdr:'DR', Cdl:'DL'},
+    langBtn:'中文'
+  },
+  zh: {
+    appName:'双矢棋', boardLabel:'双矢棋棋盘',
+    turnBefore:'轮到 <b style="color:var(--p1)">先手</b>',
+    turnAfter:'轮到 <b style="color:var(--p2)">后手</b>',
+    moves:n=>`步数 ${n}`, total:n=>`共 ${n} 手`, gameOver:'终局',
+    deadRegions:n=>`死区 ${n}`, selected:s=>`框选 ${s}`,
+    thinking:'对方思考中…', ovTitle:n=>`${n} 手后无子可落`,
+    aiWin:'AI 获胜', youWin:'你获胜',
+    firstWins:'先手方胜', secondWins:'后手方胜',
+    again:'再来一局', undo:'悔棋', reset:'重开', resetConfirm:'确认重开？',
+    twoPlayers:'双人对局', vsAi:'人机对局',
+    aiFirst:'AI 执先手', aiSecond:'AI 执后手',
+    levels:['学徒','棋手','棋师'],
+    orient:{Sh:'直·横', Sv:'直·竖', Cul:'角·上左', Cur:'角·上右', Cdr:'角·下右', Cdl:'角·下左'},
+    langBtn:'EN'
+  }
+};
+let LANG = 'en', T = I18N.en;
 const SVGNS = 'http://www.w3.org/2000/svg';
 const $ = id => document.getElementById(id);
 const wrap = v => (v + N) % N;
@@ -386,7 +423,7 @@ function buildBoard(){
 function refresh(){
   const A = analyze();
   gameOverInfo = A.legal === 0
-    ? { moves: history.length, winner: history.length % 2 === 1 ? '先手' : '后手' }
+    ? { moves: history.length, winner: history.length % 2 === 1 ? 1 : 2 }
     : null;
 
   // 格子底色：可落淡光 / 永不可落（被指≥3 或推算永死）暗红 / 眠格等其余透明
@@ -427,32 +464,30 @@ function refresh(){
 
   // 顶栏
   if(gameOverInfo){
-    $('turnInfo').textContent = '终局';
-    $('moveInfo').textContent = `共 ${gameOverInfo.moves} 手`;
+    $('turnInfo').textContent = T.gameOver;
+    $('moveInfo').textContent = T.total(gameOverInfo.moves);
   }else{
     const first = history.length % 2 === 0;
-    $('turnInfo').innerHTML = first
-      ? '轮到 <b style="color:var(--p1)">先手</b>'
-      : '轮到 <b style="color:var(--p2)">后手</b>';
-    $('moveInfo').textContent = `步数 ${history.length}`;
+    $('turnInfo').innerHTML = first ? T.turnBefore : T.turnAfter;
+    $('moveInfo').textContent = T.moves(history.length);
   }
-  $('deadInfo').textContent = `死区 ${A.regions.length}`;
+  $('deadInfo').textContent = T.deadRegions(A.regions.length);
   $('selInfo').textContent = (selected && !gameOverInfo)
-    ? `框选 ${String.fromCharCode(97 + selected[1])}${selected[0]+1}` : '';
+    ? T.selected(`${String.fromCharCode(97 + selected[1])}${selected[0]+1}`) : '';
 
   renderOrient(A);
 
   $('undoBtn').disabled = history.length === 0 || (aiMode && history.length < 2);
 
   if(gameOverInfo){
-    $('ovTitle').textContent = `${gameOverInfo.moves} 手后无子可落`;
+    $('ovTitle').textContent = T.ovTitle(gameOverInfo.moves);
     if(aiMode){
-      const aiWin = (gameOverInfo.winner === '先手') === aiPlaysFirst;
-      $('ovWinner').textContent = aiWin ? 'AI 获胜' : '你获胜';
+      const aiWin = (gameOverInfo.winner === 1) === aiPlaysFirst;
+      $('ovWinner').textContent = aiWin ? T.aiWin : T.youWin;
       $('ovWinner').style.color = aiWin ? 'var(--p2)' : 'var(--p1)';
     }else{
-      $('ovWinner').textContent = `${gameOverInfo.winner}方胜`;
-      $('ovWinner').style.color = gameOverInfo.winner === '先手' ? 'var(--p1)' : 'var(--p2)';
+      $('ovWinner').textContent = gameOverInfo.winner === 1 ? T.firstWins : T.secondWins;
+      $('ovWinner').style.color = gameOverInfo.winner === 1 ? 'var(--p1)' : 'var(--p2)';
     }
     $('overlay').classList.remove('hidden');
   }else{
@@ -481,7 +516,7 @@ function renderOrient(A){
     svg.appendChild(el('path', { d: heads, class: 'phead' }));
     b.appendChild(svg);
     const s = document.createElement('span');
-    s.textContent = o.label;
+    s.textContent = T.orient[o.key];
     b.appendChild(s);
     b.addEventListener('click', () => {
       if(!selected || aiThinking) return;
@@ -655,7 +690,7 @@ function maybeAiMove(){
   if(!aiTurn) return;
   aiThinking = true;
   const seq = gameSeq;
-  $('turnInfo').innerHTML = '<span style="color:var(--muted)">对方思考中…</span>';
+  $('turnInfo').innerHTML = `<span style="color:var(--muted)">${T.thinking}</span>`;
   setTimeout(() => {
     if(seq !== gameSeq){ aiThinking = false; return; }
     const m = aiChooseMove();
@@ -665,11 +700,11 @@ function maybeAiMove(){
 }
 
 function syncAiUi(){
-  $('modeBtn').textContent = aiMode ? '人机对局' : '双人对局';
+  $('modeBtn').textContent = aiMode ? T.vsAi : T.twoPlayers;
   $('sideBtn').style.display = aiMode ? '' : 'none';
   $('lvlBtn').style.display = aiMode ? '' : 'none';
-  $('sideBtn').textContent = aiPlaysFirst ? 'AI 执先手' : 'AI 执后手';
-  $('lvlBtn').textContent = AI_LEVELS[aiLevel].name;
+  $('sideBtn').textContent = aiPlaysFirst ? T.aiFirst : T.aiSecond;
+  $('lvlBtn').textContent = T.levels[aiLevel];
 }
 $('modeBtn').addEventListener('click', () => {
   if(aiThinking) return;
@@ -714,18 +749,38 @@ $('ovAgain').addEventListener('click', () => { disarmReset(); newGame(); refresh
 
 function disarmReset(){
   const b = $('resetBtn');
-  b.classList.remove('armed'); b.textContent = '重开';
+  b.classList.remove('armed'); b.textContent = T.reset;
 }
 $('resetBtn').addEventListener('click', e => {
   e.stopPropagation();
   if(aiThinking) return;
   const b = $('resetBtn');
   if(!b.classList.contains('armed')){
-    b.classList.add('armed'); b.textContent = '确认重开？';
+    b.classList.add('armed'); b.textContent = T.resetConfirm;
     return;
   }
   disarmReset(); newGame(); refresh();
 });
+/* 语言切换：默认英文，点一下切中文 */
+function applyLang(){
+  document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
+  document.title = T.appName;
+  $('logo').textContent = T.appName;
+  $('board').setAttribute('aria-label', T.boardLabel);
+  $('ovAgain').textContent = T.again;
+  $('ovUndo').textContent = T.undo;
+  $('undoBtn').textContent = T.undo;
+  $('langBtn').textContent = T.langBtn;
+  if(!$('resetBtn').classList.contains('armed')) $('resetBtn').textContent = T.reset;
+  syncAiUi();
+}
+$('langBtn').addEventListener('click', () => {
+  LANG = LANG === 'en' ? 'zh' : 'en';
+  T = I18N[LANG];
+  applyLang();
+  refresh();
+});
+
 // 点击页面其他位置或按 Esc 取消重开确认
 document.addEventListener('click', e => {
   if($('resetBtn').classList.contains('armed') && e.target !== $('resetBtn')) disarmReset();
@@ -736,6 +791,7 @@ document.addEventListener('keydown', e => {
 
 /* ================= 启动 ================= */
 buildBoard();
+applyLang();
 newGame();
 refresh();
 
