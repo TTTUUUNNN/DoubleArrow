@@ -12,12 +12,12 @@ I have been training an AI on it. After more than half a month of work, the curr
 |---|---|
 | [RULES.md](RULES.md) / [RULES.en.md](RULES.en.md) | Rules (Chinese / English) |
 | [engine.py](engine.py) | Dependency-free rule engine, written out cell by cell |
-| [play/arrow-chess.html](play/arrow-chess.html) | Playable in a browser; includes a UCT sparring partner |
+| [Play online](https://tttuuunnn.github.io/DoubleArrow/play/) / [play/arrow-chess.html](play/arrow-chess.html) | Playable in a browser; includes a UCT sparring partner |
 | [assets/](assets/) | Rule diagrams (SVG) |
 
 ## Quick start
 
-**Just want to play?** Open `play/arrow-chess.html` in a browser. No dependencies.
+**Just want to play?** Open [Play online](https://tttuuunnn.github.io/DoubleArrow/play/) — nothing to install. Or download `play/arrow-chess.html` and open it locally.
 
 **Want to check the rules?** Run `python engine.py`. It prints the number of legal moves at the start (24) and a count of each cell class. Your own implementation should produce the same numbers; if it does not, we disagree about the rules.
 
