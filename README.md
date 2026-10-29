@@ -12,12 +12,12 @@
 |---|---|
 | [RULES.md](RULES.md) / [RULES.en.md](RULES.en.md) | 规则（中文 / English） |
 | [engine.py](engine.py) | 纯规则引擎，零依赖、逐格实现，便于核对 |
-| [在线试玩](https://tttuuunnn.github.io/DoubleArrow/play/) / [play/arrow-chess.html](play/arrow-chess.html) | 浏览器里直接玩（自带一个 UCT 陪练）；也可下载后双击，无任何依赖 |
+| [在线试玩](https://tttuuunnn.github.io/DoubleArrow/play/arrow-chess.html) | 浏览器里直接玩（自带一个 UCT 陪练）。也可下载 `play/arrow-chess.html` 后双击，无任何依赖 |
 | [assets/](assets/) | 规则配图（SVG） |
 
 ## 快速开始
 
-**想直接下**：点 [在线试玩](https://tttuuunnn.github.io/DoubleArrow/play/) 立刻能玩；或者下载 `play/arrow-chess.html` 后双击（浏览器打开，无任何依赖）。
+**想直接下**：点 [在线试玩](https://tttuuunnn.github.io/DoubleArrow/play/arrow-chess.html) 立刻能玩；或者下载 `play/arrow-chess.html` 后双击（浏览器打开，无任何依赖）。
 
 **想核对规则**：跑 `python engine.py`，它会打印开局的合法落点数（24 个）和四类格统计。你自己写的实现应该给出同样的数字——不一样就是规则理解有分歧。
 
