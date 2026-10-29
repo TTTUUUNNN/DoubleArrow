@@ -38,7 +38,7 @@ A cell like this has no legal piece types left, so it can never be played.
 
 **Cause 2: the whole empty region it belongs to contains no playable cell.**
 
-First, an **empty region**: treat placed pieces, plus the dead cells from Cause 1, as walls. The remaining empty cells then split into connected areas, and each area is one empty region.
+First, an **empty region**: treat placed pieces, plus the dead cells from Cause 1, as walls. The remaining empty cells then split into connected regions, and each one is an empty region.
 
 If a region contains no playable cell at all, the whole region is sealed off forever. (This is rare in practice.)
 
@@ -87,7 +87,7 @@ So "few legal moves" is a single-game view. Across many games, the legal cells a
 
 I think there is a strict structural property: **a move only affects the empty region it belongs to, and regions do not interact.**
 
-The reasoning: a piece's two arrows point at two adjacent cells. If that neighbour is empty, it is necessarily in the same region; if it is a piece, it does not affect legality. And since pieces are never removed, the way a region can be entered from outside is fixed for good.
+The reasoning: a piece's two arrows point at two adjacent cells. If that adjacent cell is empty, it is necessarily in the same region; if it is a piece, it does not affect legality. And since pieces are never removed, the way a region can be entered from outside is fixed for good.
 
 If that holds, the mid- and endgame decompose into a disjoint sum, and Sprague–Grundy machinery applies.
 
