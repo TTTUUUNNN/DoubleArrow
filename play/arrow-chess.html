@@ -204,7 +204,7 @@ const I18N = {
     turnBefore:'Waiting for <b style="color:var(--p1)">first</b>',
     turnAfter:'Waiting for <b style="color:var(--p2)">second</b>',
     moves:n=>`Move ${n}`, total:n=>`${n} moves`, gameOver:'Game over',
-    deadRegions:n=>`Dead regions ${n}`, selected:s=>`Selected ${s}`,
+    deadCells:n=>`Dead cells ${n}`, selected:s=>`Selected ${s}`,
     thinking:'Thinking…', ovTitle:n=>`No legal move after ${n} moves`,
     aiWin:'AI wins', youWin:'You win',
     firstWins:'First player wins', secondWins:'Second player wins',
@@ -220,7 +220,7 @@ const I18N = {
     turnBefore:'轮到 <b style="color:var(--p1)">先手</b>',
     turnAfter:'轮到 <b style="color:var(--p2)">后手</b>',
     moves:n=>`步数 ${n}`, total:n=>`共 ${n} 手`, gameOver:'终局',
-    deadRegions:n=>`死区 ${n}`, selected:s=>`框选 ${s}`,
+    deadCells:n=>`死格 ${n}`, selected:s=>`框选 ${s}`,
     thinking:'对方思考中…', ovTitle:n=>`${n} 手后无子可落`,
     aiWin:'AI 获胜', youWin:'你获胜',
     firstWins:'先手方胜', secondWins:'后手方胜',
@@ -471,7 +471,7 @@ function refresh(){
     $('turnInfo').innerHTML = first ? T.turnBefore : T.turnAfter;
     $('moveInfo').textContent = T.moves(history.length);
   }
-  $('deadInfo').textContent = T.deadRegions(A.regions.length);
+  $('deadInfo').textContent = T.deadCells(A.dead);
   $('selInfo').textContent = (selected && !gameOverInfo)
     ? T.selected(`${String.fromCharCode(97 + selected[1])}${selected[0]+1}`) : '';
 
