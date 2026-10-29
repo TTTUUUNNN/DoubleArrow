@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" width="400" height="80" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <style><![CDATA[
+.pglow{stroke:rgba(165,180,255,.42);stroke-width:8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pline{stroke:#f0f3ff;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.phead{fill:#f0f3ff}
+]]></style>
+  <defs>
+    <radialGradient id="boardbg" cx="50%" cy="40%" r="78%">
+      <stop offset="0%" stop-color="#142620"/>
+      <stop offset="58%" stop-color="#101d19"/>
+      <stop offset="100%" stop-color="#0c1714"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="80" rx="12" fill="url(#boardbg)"/>
+
+  <g transform="translate(25 15)">
+    <path d="M11 25L39 25" class="pglow"/>
+    <path d="M11 25L39 25" class="pline"/>
+    <path d="M39 25L32 28L32 22ZM11 25L18 22L18 28Z" class="phead"/>
+  </g>
+  <g transform="translate(85 15)">
+    <path d="M25 11L25 39" class="pglow"/>
+    <path d="M25 11L25 39" class="pline"/>
+    <path d="M25 11L28 18L22 18ZM25 39L22 32L28 32Z" class="phead"/>
+  </g>
+  <g transform="translate(145 15)">
+    <path d="M31 13.4L31 31L13.4 31" class="pglow"/>
+    <path d="M31 13.4L31 31L13.4 31" class="pline"/>
+    <path d="M31 13.4L34 20.4L28 20.4ZM13.4 31L20.4 28L20.4 34Z" class="phead"/>
+  </g>
+  <g transform="translate(205 15)">
+    <path d="M19 13.4L19 31L36.6 31" class="pglow"/>
+    <path d="M19 13.4L19 31L36.6 31" class="pline"/>
+    <path d="M19 13.4L22 20.4L16 20.4ZM36.6 31L29.6 34L29.6 28Z" class="phead"/>
+  </g>
+  <g transform="translate(265 15)">
+    <path d="M36.6 19L19 19L19 36.6" class="pglow"/>
+    <path d="M36.6 19L19 19L19 36.6" class="pline"/>
+    <path d="M36.6 19L29.6 22L29.6 16ZM19 36.6L16 29.6L22 29.6Z" class="phead"/>
+  </g>
+  <g transform="translate(325 15)">
+    <path d="M31 36.6L31 19L13.4 19" class="pglow"/>
+    <path d="M31 36.6L31 19L13.4 19" class="pline"/>
+    <path d="M31 36.6L28 29.6L34 29.6ZM13.4 19L20.4 16L20.4 22Z" class="phead"/>
+  </g>
+</svg>

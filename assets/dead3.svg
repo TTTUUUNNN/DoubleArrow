@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 332" width="360" height="332" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <style><![CDATA[
+.pglow{stroke:rgba(165,180,255,.42);stroke-width:8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pline{stroke:#f0f3ff;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.phead{fill:#f0f3ff}
+]]></style>
+  <defs>
+    <radialGradient id="boardbg" cx="50%" cy="20%" r="95%">
+      <stop offset="0%" stop-color="#142620"/>
+      <stop offset="60%" stop-color="#101d19"/>
+      <stop offset="100%" stop-color="#0c1714"/>
+    </radialGradient>
+    <radialGradient id="dead">
+      <stop offset="0%" stop-color="rgba(210,60,48,0.12)"/>
+      <stop offset="55%" stop-color="rgba(210,60,48,0.20)"/>
+      <stop offset="100%" stop-color="rgba(210,60,48,0.38)"/>
+    </radialGradient>
+  </defs>
+  <rect width="360" height="332" rx="12" fill="url(#boardbg)"/>
+
+  <rect x="70" y="70" width="150" height="100" fill="url(#dead)"/>
+  <rect x="220" y="120" width="50" height="50" fill="url(#dead)"/>
+
+  <g fill="none" stroke="rgba(120,220,190,0.18)" stroke-width="1">
+    <path d="M70 20V270M120 20V270M170 20V270M220 20V270M270 20V270M320 20V270M20 70H320M20 120H320M20 170H320M20 220H320"/>
+  </g>
+
+  <g transform="translate(70 20)">
+    <path d="M11 25L39 25" class="pglow"/><path d="M11 25L39 25" class="pline"/>
+    <path d="M39 25L32 28L32 22ZM11 25L18 22L18 28Z" class="phead"/>
+  </g>
+  <g transform="translate(120 20)">
+    <path d="M31 13.4L31 31L13.4 31" class="pglow"/><path d="M31 13.4L31 31L13.4 31" class="pline"/>
+    <path d="M31 13.4L34 20.4L28 20.4ZM13.4 31L20.4 28L20.4 34Z" class="phead"/>
+  </g>
+  <g transform="translate(170 20)">
+    <path d="M19 13.4L19 31L36.6 31" class="pglow"/><path d="M19 13.4L19 31L36.6 31" class="pline"/>
+    <path d="M19 13.4L22 20.4L16 20.4ZM36.6 31L29.6 34L29.6 28Z" class="phead"/>
+  </g>
+  <g transform="translate(220 20)">
+    <path d="M11 25L39 25" class="pglow"/><path d="M11 25L39 25" class="pline"/>
+    <path d="M39 25L32 28L32 22ZM11 25L18 22L18 28Z" class="phead"/>
+  </g>
+  <g transform="translate(20 70)">
+    <path d="M31 13.4L31 31L13.4 31" class="pglow"/><path d="M31 13.4L31 31L13.4 31" class="pline"/>
+    <path d="M31 13.4L34 20.4L28 20.4ZM13.4 31L20.4 28L20.4 34Z" class="phead"/>
+  </g>
+  <g transform="translate(220 70)">
+    <path d="M36.6 19L19 19L19 36.6" class="pglow"/><path d="M36.6 19L19 19L19 36.6" class="pline"/>
+    <path d="M36.6 19L29.6 22L29.6 16ZM19 36.6L16 29.6L22 29.6Z" class="phead"/>
+  </g>
+  <g transform="translate(20 120)">
+    <path d="M31 36.6L31 19L13.4 19" class="pglow"/><path d="M31 36.6L31 19L13.4 19" class="pline"/>
+    <path d="M31 36.6L28 29.6L34 29.6ZM13.4 19L20.4 16L20.4 22Z" class="phead"/>
+  </g>
+  <g transform="translate(270 120)">
+    <path d="M31 13.4L31 31L13.4 31" class="pglow"/><path d="M31 13.4L31 31L13.4 31" class="pline"/>
+    <path d="M31 13.4L34 20.4L28 20.4ZM13.4 31L20.4 28L20.4 34Z" class="phead"/>
+  </g>
+  <g transform="translate(20 170)">
+    <path d="M25 11L25 39" class="pglow"/><path d="M25 11L25 39" class="pline"/>
+    <path d="M25 11L28 18L22 18ZM25 39L22 32L28 32Z" class="phead"/>
+  </g>
+  <g transform="translate(70 170)">
+    <path d="M31 36.6L31 19L13.4 19" class="pglow"/><path d="M31 36.6L31 19L13.4 19" class="pline"/>
+    <path d="M31 36.6L28 29.6L34 29.6ZM13.4 19L20.4 16L20.4 22Z" class="phead"/>
+  </g>
+  <g transform="translate(120 170)">
+    <path d="M36.6 19L19 19L19 36.6" class="pglow"/><path d="M36.6 19L19 19L19 36.6" class="pline"/>
+    <path d="M36.6 19L29.6 22L29.6 16ZM19 36.6L16 29.6L22 29.6Z" class="phead"/>
+  </g>
+  <g transform="translate(170 170)">
+    <path d="M31 36.6L31 19L13.4 19" class="pglow"/><path d="M31 36.6L31 19L13.4 19" class="pline"/>
+    <path d="M31 36.6L28 29.6L34 29.6ZM13.4 19L20.4 16L20.4 22Z" class="phead"/>
+  </g>
+  <g transform="translate(220 170)">
+    <path d="M36.6 19L19 19L19 36.6" class="pglow"/><path d="M36.6 19L19 19L19 36.6" class="pline"/>
+    <path d="M36.6 19L29.6 22L29.6 16ZM19 36.6L16 29.6L22 29.6Z" class="phead"/>
+  </g>
+
+  <text x="20" y="296" font-size="11.5" fill="#8fa8a0">这一整片空区里没有任何可落格</text>
+  <text x="20" y="314" font-size="11.5" fill="#8fa8a0">于是整片都被永远关死</text>
+</svg>

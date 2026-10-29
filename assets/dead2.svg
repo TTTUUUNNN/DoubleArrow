@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 212" width="190" height="212" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <style><![CDATA[
+.pglow{stroke:rgba(165,180,255,.42);stroke-width:8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pline{stroke:#f0f3ff;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.phead{fill:#f0f3ff}
+]]></style>
+  <defs>
+    <radialGradient id="boardbg" cx="50%" cy="20%" r="95%">
+      <stop offset="0%" stop-color="#142620"/>
+      <stop offset="60%" stop-color="#101d19"/>
+      <stop offset="100%" stop-color="#0c1714"/>
+    </radialGradient>
+  </defs>
+  <rect width="190" height="212" rx="12" fill="url(#boardbg)"/>
+  <g fill="none" stroke="rgba(120,220,190,0.18)" stroke-width="1">
+    <path d="M70 20V170M120 20V170M20 70H170M20 120H170"/>
+  </g>
+
+  <rect x="70" y="70" width="50" height="50" fill="none" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="95" y="102" font-size="19" fill="#ff6b6b" text-anchor="middle">×</text>
+
+  <g transform="translate(20 20)">
+    <path d="M31 13.4L31 31L13.4 31" class="pglow"/>
+    <path d="M31 13.4L31 31L13.4 31" class="pline"/>
+    <path d="M31 13.4L34 20.4L28 20.4ZM13.4 31L20.4 28L20.4 34Z" class="phead"/>
+  </g>
+  <g transform="translate(70 20)">
+    <path d="M19 13.4L19 31L36.6 31" class="pglow"/>
+    <path d="M19 13.4L19 31L36.6 31" class="pline"/>
+    <path d="M19 13.4L22 20.4L16 20.4ZM36.6 31L29.6 34L29.6 28Z" class="phead"/>
+  </g>
+  <g transform="translate(120 20)">
+    <path d="M19 13.4L19 31L36.6 31" class="pglow"/>
+    <path d="M19 13.4L19 31L36.6 31" class="pline"/>
+    <path d="M19 13.4L22 20.4L16 20.4ZM36.6 31L29.6 34L29.6 28Z" class="phead"/>
+  </g>
+  <g transform="translate(20 70)">
+    <path d="M31 13.4L31 31L13.4 31" class="pglow"/>
+    <path d="M31 13.4L31 31L13.4 31" class="pline"/>
+    <path d="M31 13.4L34 20.4L28 20.4ZM13.4 31L20.4 28L20.4 34Z" class="phead"/>
+  </g>
+  <g transform="translate(120 70)">
+    <path d="M19 13.4L19 31L36.6 31" class="pglow"/>
+    <path d="M19 13.4L19 31L36.6 31" class="pline"/>
+    <path d="M19 13.4L22 20.4L16 20.4ZM36.6 31L29.6 34L29.6 28Z" class="phead"/>
+  </g>
+  <g transform="translate(20 120)">
+    <path d="M31 36.6L31 19L13.4 19" class="pglow"/>
+    <path d="M31 36.6L31 19L13.4 19" class="pline"/>
+    <path d="M31 36.6L28 29.6L34 29.6ZM13.4 19L20.4 16L20.4 22Z" class="phead"/>
+  </g>
+  <g transform="translate(70 120)">
+    <path d="M31 36.6L31 19L13.4 19" class="pglow"/>
+    <path d="M31 36.6L31 19L13.4 19" class="pline"/>
+    <path d="M31 36.6L28 29.6L34 29.6ZM13.4 19L20.4 16L20.4 22Z" class="phead"/>
+  </g>
+  <g transform="translate(120 120)">
+    <path d="M36.6 19L19 19L19 36.6" class="pglow"/>
+    <path d="M36.6 19L19 19L19 36.6" class="pline"/>
+    <path d="M36.6 19L29.6 22L29.6 16ZM19 36.6L16 29.6L22 29.6Z" class="phead"/>
+  </g>
+
+  <text x="20" y="196" font-size="11.5" fill="#8fa8a0">整片空区没有可落格 → 永死</text>
+</svg>
